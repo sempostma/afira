@@ -1,0 +1,30 @@
+{
+  "name": "kbckp",
+  "bin": {
+    "kbckp": "./bin/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LesterGallagher/kbckp.git"
+  },
+  "preferGlobal": true,
+  "homepage": "https://github.com/LesterGallagher/kbckp",
+  "bugs": {
+    "url": "https://github.com/LesterGallagher/kbckp/issues",
+    "email": "kbckp-bugs@esstudio.site"
+  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": {
+    "name": "Sem Postma",
+    "email": "sp@esstudio.site",
+    "url": "https://esstudio.site"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^3.0.0",
+    "fs-extra": "^8.1.0"
+  },
+  "devDependencies": {}
+}
