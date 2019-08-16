@@ -1,17 +1,17 @@
 {
-  "name": "kbckp",
+  "name": "afira",
   "bin": {
-    "kbckp": "./bin/index.js"
+    "afira": "./bin/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/LesterGallagher/kbckp.git"
+    "url": "https://github.com/LesterGallagher/afira.git"
   },
   "preferGlobal": true,
-  "homepage": "https://github.com/LesterGallagher/kbckp",
+  "homepage": "https://github.com/LesterGallagher/afira",
   "bugs": {
-    "url": "https://github.com/LesterGallagher/kbckp/issues",
-    "email": "kbckp-bugs@esstudio.site"
+    "url": "https://github.com/LesterGallagher/afira/issues",
+    "email": "afira-bugs@esstudio.site"
   },
   "version": "1.0.0",
   "description": "",
@@ -24,7 +24,10 @@
   "license": "MIT",
   "dependencies": {
     "commander": "^3.0.0",
-    "fs-extra": "^8.1.0"
+    "fs-extra": "^8.1.0",
+    "xmldom": "^0.1.27"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint": "^6.1.0"
+  }
 }
