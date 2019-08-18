@@ -13,7 +13,7 @@
     "url": "https://github.com/LesterGallagher/afira/issues",
     "email": "afira-bugs@esstudio.site"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Developer tool for automating common tasks.",
   "main": "index.js",
   "author": {
