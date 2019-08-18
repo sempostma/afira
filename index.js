@@ -14,6 +14,7 @@ program
 
 program
     .command('accumulate')
+    .description('Accumulates files with specific extensions into a single folder. Handy for backing up files.')
     .option('-d, --depth <number>', 'Depth to search for files', parseInt)
     .option('-o, --out <path>', 'Output path', path => path)
     .option('-e, --extensions <extensions>', 'Extensions to backup', extensions => (extensions || '').split(/\s*,\s*/))
@@ -35,6 +36,7 @@ program
 
 program
     .command('cordova:check')
+    .description('Run production checks for a specific cordova project. Must be run from within a cordova project.')
     .action(async function() {
         doChecks({ cwd: process.cwd() })
     })

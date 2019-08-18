@@ -14,7 +14,7 @@
     "email": "afira-bugs@esstudio.site"
   },
   "version": "1.0.0",
-  "description": "",
+  "description": "Developer tool for automating common tasks.",
   "main": "index.js",
   "author": {
     "name": "Sem Postma",
