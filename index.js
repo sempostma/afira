@@ -7,6 +7,8 @@ const package = require('./package.json');
 const { findFilesRecusively } = require('./lib/files');
 const { doChecks } = require('./lib/cordova/check');
 
+const rgen = require('./lib/rgen');
+
 program
     .version(package.version)
     .name(package.name)
@@ -39,6 +41,40 @@ program
     .description('Run production checks for a specific cordova project. Must be run from within a cordova project.')
     .action(async function() {
         doChecks({ cwd: process.cwd() })
+    })
+
+
+program
+    .command('reactgen:component <name>')
+    .alias('rgen:com')
+    .description('Generates a react component.')
+    .action(async function(name, cmdObject) {
+        await rgen.component({ dir: process.cwd(), name })
+    })
+
+program
+    .command('reactgen:container <name>')
+    .alias('rgen:con')
+    .description('Generates a react container.')
+    .action(async function(name, cmdObject) {
+        await rgen.container({ dir: process.cwd(), name })
+    })
+
+
+program
+    .command('reactgen:redux-container <name>')
+    .alias('rgen:rrc')
+    .description('Generates a react redux container.')
+    .action(async function(name, cmdObject) {
+        await rgen.reduxContainer({ dir: process.cwd(), name })
+    })
+
+program
+    .command('reactgen:redux-actions <name>')
+    .alias('rgen:rra')
+    .description('Generates a react redux actions.')
+    .action(async function(name, cmdObject) {
+        await rgen.reduxActions({ dir: process.cwd(), name })
     })
 
 program.parse(process.argv);
