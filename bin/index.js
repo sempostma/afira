@@ -1,3 +1,8 @@
 #!/usr/bin/env node
 
-require('../index');
+try {
+    require('../index');
+} catch(err) {
+    console.error(err);
+    process.exit(1);
+}
