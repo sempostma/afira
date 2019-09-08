@@ -10,7 +10,8 @@ const {
     doCordovaChecks,
     imageColourise,
     fontpackInterface,
-    rgen
+    rgen,
+    localizationExtraction
 } = require('../index');
 
 program
@@ -51,7 +52,7 @@ program
     .command('img:colourise [img] [color] [output]')
     .alias('img:c')
     .description('Colourise simple transparent glyphs.')
-    .action(async (img, color, output, cmdObj) => {
+    .action(async (img, color, output) => {
         console.log(img, color, output)
         const cwd = process.cwd();
         await imageColourise({ img, color, output, cwd });
@@ -76,12 +77,19 @@ program
         await fontpackInterface({ fontName, iconName, ...cmdObj })
     });
 
+program
+    .command('localization:extraction <glob> <locales dir>')
+    .alias('l:e')
+    .description('Extracts strings from javascript files.')
+    .action(async (glob, output) => {
+        await localizationExtraction({ cwd: process.cwd(), glob, output })
+    })
 
 program
     .command('reactgen:component <name>')
     .alias('rgen:com')
     .description('Generates a react component.')
-    .action(async function (name, cmdObject) {
+    .action(async function (name) {
         await rgen.component({ dir: process.cwd(), name })
     });
 
@@ -89,7 +97,7 @@ program
     .command('reactgen:container <name>')
     .alias('rgen:con')
     .description('Generates a react container.')
-    .action(async function (name, cmdObject) {
+    .action(async function (name) {
         await rgen.container({ dir: process.cwd(), name })
     });
 
@@ -98,7 +106,7 @@ program
     .command('reactgen:redux-container <name>')
     .alias('rgen:rrc')
     .description('Generates a react redux container.')
-    .action(async function (name, cmdObject) {
+    .action(async function (name) {
         await rgen.reduxContainer({ dir: process.cwd(), name })
     });
 
@@ -106,7 +114,7 @@ program
     .command('reactgen:redux-actions <name>')
     .alias('rgen:rra')
     .description('Generates a react redux actions.')
-    .action(async function (name, cmdObject) {
+    .action(async function (name) {
         await rgen.reduxActions({ dir: process.cwd(), name })
     });
 
