@@ -1,2 +1,9 @@
 node_modules
 .vscode
+
+logs
+*.log
+npm-debug.log*
+
+*.tgz
+.DS_Store
