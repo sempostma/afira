@@ -5,6 +5,7 @@ const imageColourise = require('./lib/img/colourise');
 const fontpackInterface = require('./lib/fontpack/interface');
 const rgen = require('./lib/rgen');
 const localizationExtraction = require('./lib/localization-extraction');
+const soundcloud = require('./lib/soundcloud')
 
 module.exports = {
     package,
@@ -13,5 +14,6 @@ module.exports = {
     imageColourise,
     fontpackInterface,
     rgen,
-    localizationExtraction
+    localizationExtraction,
+    soundcloud
 };

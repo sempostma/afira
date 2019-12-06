@@ -11,7 +11,8 @@ const {
     imageColourise,
     fontpackInterface,
     rgen,
-    localizationExtraction
+    localizationExtraction,
+    soundcloud
 } = require('../index');
 
 program
@@ -116,6 +117,14 @@ program
     .description('Generates a react redux actions.')
     .action(async function (name) {
         await rgen.reduxActions({ dir: process.cwd(), name })
+    });
+
+program
+    .command('soundcloud connect <client_id> <redirect_uri> <responseType> [scope] [display] [state]')
+    .alias('soundcloud:connect')
+    .description('Soundcloud connect.')
+    .action(async function (clientId, redirectUri, responseType, scope, display, state) {
+        soundcloud.connect({clientId, redirectUri, responseType, scope, display, state});
     });
 
 
