@@ -7,6 +7,7 @@ const rgen = require('./lib/rgen');
 const httpDiagnose = require('./lib/http-diagnose');
 const localizationExtraction = require('./lib/localization-extraction');
 const processCommand = require('./lib/process');
+const soundcloud = require('./lib/soundcloud')
 
 module.exports = {
     package,
@@ -17,5 +18,6 @@ module.exports = {
     rgen,
     localizationExtraction,
     httpDiagnose,
-    processCommand
+    processCommand,
+    soundcloud
 };
