@@ -11,7 +11,9 @@ const {
     imageColourise,
     fontpackInterface,
     rgen,
-    localizationExtraction
+    localizationExtraction,
+    httpDiagnose,
+    processCommand
 } = require('../index');
 
 program
@@ -123,6 +125,22 @@ program.on('command:*', function () {
     console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '));
     process.exit(1);
 });
+
+program
+    .command('process [urls...]')
+    .option('-o, --out <out>', 'Output directory')
+    .option('-r, --root <root>', 'Root element')
+    .option('-i, --imagedir <imagedir>', 'Image directory')
+    .option('-p, --publicimagepath <publicimagepath>', 'Public path to images')
+    .option('-c, --crawl', 'Recursively crawl all of the pages linked to this page.')
+    .option('-f, --frontmatter', 'Include some common front matter entries in YAML format.')
+    .action(processCommand)
+
+program
+    .command('http-diagnose [url]')
+    .action(async (url) => {
+        await httpDiagnose({ url })
+    })
 
 program.parse(process.argv);
 
