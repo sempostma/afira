@@ -1,23 +1,4 @@
-const package = require('./package.json');
-const { findFilesRecusively } = require('./lib/files');
-const { doChecks: doCordovaChecks } = require('./lib/cordova/check');
-const imageColourise = require('./lib/img/colourise');
-const fontpackInterface = require('./lib/fontpack/interface');
-const rgen = require('./lib/rgen');
-const httpDiagnose = require('./lib/http-diagnose');
-const localizationExtraction = require('./lib/localization-extraction');
-const processCommand = require('./lib/process');
-const soundcloud = require('./lib/soundcloud')
+const mapValues = require('lodash/mapValues')
+const lazyExports = require('./lazy-exports')
 
-module.exports = {
-    package,
-    findFilesRecusively,
-    doCordovaChecks,
-    imageColourise,
-    fontpackInterface,
-    rgen,
-    localizationExtraction,
-    httpDiagnose,
-    processCommand,
-    soundcloud
-};
+module.exports = mapValues(lazyExports, value => value())

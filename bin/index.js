@@ -15,12 +15,12 @@ const {
     httpDiagnose,
     processCommand,
     soundcloud
-} = require('../index');
+} = require('../lazy-exports');
 
 program
-    .version(package.version)
-    .name(package.name)
-    .description(package.description);
+    .version(package().version)
+    .name(package().name)
+    .description(package().description);
 
 program
     .command('accumulate')
@@ -33,7 +33,7 @@ program
 
         if (!depth || !out) throw new Error('"depth" and "out" have to be set.')
 
-        const filesToBackup = await findFilesRecusively({ ignore, extensions, depth });
+        const filesToBackup = await findFilesRecusively()({ ignore, extensions, depth });
 
         filesToBackup.forEach(file => {
             console.log(`backing up "${file}"`);
@@ -48,7 +48,7 @@ program
     .command('cordova:check')
     .description('Run production checks for a specific cordova project. Must be run from within a cordova project.')
     .action(async function () {
-        doCordovaChecks({ cwd: process.cwd() })
+        doCordovaChecks()({ cwd: process.cwd() })
     });
 
 program
@@ -58,7 +58,7 @@ program
     .action(async (img, color, output) => {
         console.log(img, color, output)
         const cwd = process.cwd();
-        await imageColourise({ img, color, output, cwd });
+        await imageColourise()({ img, color, output, cwd });
     });
 
 program
@@ -77,7 +77,7 @@ program
     .option('-m, --margins <color>', 'Margins of the image.')
 
     .action(async function (fontName, iconName, cmdObj) {
-        await fontpackInterface({ fontName, iconName, ...cmdObj })
+        await fontpackInterface()({ fontName, iconName, ...cmdObj })
     });
 
 program
@@ -85,7 +85,7 @@ program
     .alias('l:e')
     .description('Extracts strings from javascript files.')
     .action(async (glob, output) => {
-        await localizationExtraction({ cwd: process.cwd(), glob, output })
+        await localizationExtraction()({ cwd: process.cwd(), glob, output })
     })
 
 program
@@ -93,7 +93,15 @@ program
     .alias('rgen:com')
     .description('Generates a react component.')
     .action(async function (name) {
-        await rgen.component({ dir: process.cwd(), name })
+        await rgen().component({ dir: process.cwd(), name })
+    });
+
+program
+    .command('reactgen:functionalcomponent <name>')
+    .alias('rgen:fc')
+    .description('Generates a functional react component.')
+    .action(async function (name) {
+        await rgen().functionalComponent({ dir: process.cwd(), name })
     });
 
 program
@@ -101,7 +109,7 @@ program
     .alias('rgen:con')
     .description('Generates a react container.')
     .action(async function (name) {
-        await rgen.container({ dir: process.cwd(), name })
+        await rgen().container({ dir: process.cwd(), name })
     });
 
 
@@ -110,7 +118,7 @@ program
     .alias('rgen:rrc')
     .description('Generates a react redux container.')
     .action(async function (name) {
-        await rgen.reduxContainer({ dir: process.cwd(), name })
+        await rgen().reduxContainer({ dir: process.cwd(), name })
     });
 
 program
@@ -118,7 +126,7 @@ program
     .alias('rgen:rra')
     .description('Generates a react redux actions.')
     .action(async function (name) {
-        await rgen.reduxActions({ dir: process.cwd(), name })
+        await rgen().reduxActions({ dir: process.cwd(), name })
     });
 
 program
@@ -129,7 +137,7 @@ program
     .option('-st, --state <state>', 'Any value included here will be appended to the redirect URI.')
     .description('Soundcloud connect.')
     .action(async function (clientId, redirectUri, responseType, { scope, display, state }) {
-        soundcloud.connect({clientId, redirectUri, responseType, scope, display, state});
+        soundcloud().connect({clientId, redirectUri, responseType, scope, display, state});
     });
 
 
@@ -146,12 +154,12 @@ program
     .option('-p, --publicimagepath <publicimagepath>', 'Public path to images')
     .option('-c, --crawl', 'Recursively crawl all of the pages linked to this page.')
     .option('-f, --frontmatter', 'Include some common front matter entries in YAML format.')
-    .action(processCommand)
+    .action(processCommand())
 
 program
     .command('http-diagnose [url]')
     .action(async (url) => {
-        await httpDiagnose({ url })
+        await httpDiagnose()({ url })
     })
 
 program.parse(process.argv);
