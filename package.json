@@ -45,7 +45,7 @@
     "term-img": "^4.1.0",
     "terminal-image": "^0.2.0",
     "turndown": "^5.0.3",
-    "xmldom": "^0.1.27",
+    "xmldom": "^0.5.0",
     "yaml": "^1.7.2",
     "yazl": "^2.5.1"
   },
